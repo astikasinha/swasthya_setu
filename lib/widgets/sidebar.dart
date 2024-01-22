@@ -1,7 +1,6 @@
 
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swasthya_setu/providers/details.dart';
@@ -10,13 +9,11 @@ import 'package:swasthya_setu/user_pages/user_home_page.dart';
 import 'package:swasthya_setu/user_pages/user_profile.dart';
 import 'package:swasthya_setu/utils/colours.dart';
 import 'package:swasthya_setu/utils/drawer_item.dart';
-import 'package:swasthya_setu/widgets/active_doctors.dart';
-import 'package:swasthya_setu/widgets/addresswidget.dart';
-import 'package:swasthya_setu/widgets/doctorcard.dart';
+
 
 import '../pages/historyappointments.dart';
 import '../user_pages/User_Report_Page.dart';
-import 'appointmenthistorywidget.dart';
+
 
 class Sidebar extends StatefulWidget {
   final Size size;
@@ -48,9 +45,9 @@ class _SidebarState extends State<Sidebar> {
           padding: const EdgeInsets.fromLTRB(15.0, 30, 24, 0),
           child: Column(
             children: [
-              headerWidget(userDetailsMap),
-              const SizedBox(height: 20),
-              const Divider(thickness: 1, height: 10, color: Colors.green),
+              headerWidget(userDetailsMap,widget.size),
+              const SizedBox(height: 10),
+              const Divider(thickness: 1, height: 2, color: Colors.green),
               const SizedBox(height: 20),
               DrawerItem(
                 name: 'Dashboard',
@@ -76,15 +73,8 @@ class _SidebarState extends State<Sidebar> {
     );
   }
 
-  Widget headerWidget(Map<String, dynamic> userDetailsMap) {
-    return Row(
-      children: [
-        IconButton(
-          icon: CircleAvatar(
-            backgroundImage: NetworkImage("${userDetailsMap['photoURL']}"),
-            radius: 30.0,
-          ),
-          onPressed: () {
+  Widget headerWidget(Map<String, dynamic> userDetailsMap,Size size) {
+    return GestureDetector(onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
               builder: ((context) => UserProfilePage(
                 size: widget.size,
@@ -98,13 +88,20 @@ class _SidebarState extends State<Sidebar> {
               )),
             ));
           },
-        ),
-        const SizedBox(width: 20),
-        Text(
-          "${userDetailsMap['name']}",
-          style: TextStyle(color: Colors.black, fontSize: 20),
-        ),
-      ],
+      child: Column(
+        children: [
+          CircleAvatar(
+              backgroundImage: NetworkImage("${userDetailsMap['photoURL']}"),
+              radius: size.width*0.2,
+            ),
+          
+          const SizedBox(width: 30),
+          Text(
+            "${userDetailsMap['name']}",
+            style: TextStyle(color: Colors.black, fontSize: 30,fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
     );
   }
 

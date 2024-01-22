@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya_setu/backend/appointment.dart';
 import 'package:swasthya_setu/doctor_pages/patientstile.dart';
-import 'package:swasthya_setu/widgets/appointmenthistorywidget.dart';
 
 class ScheduledAppointments extends StatelessWidget {
   final String docUid;
   final Size size;
-  const ScheduledAppointments({super.key, required this.docUid, required this.size});
+  const ScheduledAppointments(
+      {super.key, required this.docUid, required this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ScheduledAppointments extends StatelessWidget {
           return const Center(
               child: Text("Some Error Occurred , Please try after some time"));
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: Text("Loading..."),
           );
         } else {

@@ -27,29 +27,34 @@ class _AddressTextState extends State<AddressText> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       SizedBox(
         height: 30,
         child: ElevatedButton(
-           child: const Text("Locate Again",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15,fontFamily: 'DosisRegular',color: Colors.cyan)),
-           style: ElevatedButton.styleFrom(shape: BeveledRectangleBorder()),
-           onPressed: () async {
-             // String add = await getLocation();
-             _location = await getLocation();
-             if (_location.substring(0, 9) == "Throttled") {
-               _location = "Please Refresh ";
-             }
-             // print(_location);
-             setState(() {
-               // _location = add;
-             });
-           }),
+            child: const Text("Locate Again",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    fontFamily: 'DosisRegular',
+                    color: Colors.cyan)),
+            style: ElevatedButton.styleFrom(shape: BeveledRectangleBorder()),
+            onPressed: () async {
+              // String add = await getLocation();
+              _location = await getLocation();
+              if (_location.substring(0, 9) == "Throttled") {
+                _location = "Please Refresh ";
+              }
+              // print(_location);
+              setState(() {
+                // _location = add;
+              });
+            }),
       ),
-          Text(
-       _location,
-       softWrap: true,
-       style: const TextStyle(color: Colors.black, fontSize: 25),
-          )
+      Text(
+        _location,
+        softWrap: true,
+        style: const TextStyle(color: Colors.black, fontSize: 25),
+      )
     ]);
   }
 }

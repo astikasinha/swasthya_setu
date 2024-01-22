@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swasthya_setu/backend/appointment.dart';
@@ -178,7 +177,6 @@ class AppointmentBookingPage extends StatelessWidget {
                               backgroundColor: maingreen,
                               fixedSize: Size(double.infinity, size.height * 0.07)),
                           onPressed: () async {
-                            DateTime currentDate = DateTime.now();
                             await bookAppointment(doctorUID, userDetailsMap['uid'],
                                 userDetailsMap, context, doctorInfo);
                           },
